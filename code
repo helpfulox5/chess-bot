@@ -1,0 +1,74 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+// a - white pawn, b - white rook, c - white knight, d - white bishop, e - white queen, f - white king,.
+// black pieces are same letter but capital.
+
+
+
+
+vector<vector<char>> board(8, vector<char> (8, 0));
+vector<vector<char>> defaultboard = {{'b', 'c', 'd', 'e', 'f', 'd', 'c', 'b'}, {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'}, {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}, {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}, {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}, {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}, {'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A'}, {'B', 'C', 'D', 'E', 'F', 'D', 'C', 'B'}};
+
+void renderboard(){
+    
+    for (int x = 7; x>=0; x--){
+        for (int y = 7; y>=0; y--){
+            cout << "[" << defaultboard[x][y] << "] ";
+            
+            
+        }
+        cout << endl;
+    }
+}
+
+string CoordsToStr(int x, int y){
+    string Str = "";
+    
+    vector<char> vals = {'0','1','2','3','4','5','6','7','8','9'}; 
+    
+    Str.push_back(char(y+97));
+    Str.push_back(vals[x+1]);
+    
+    return Str;
+}
+
+
+
+
+vector<vector<int>> CalculatePosibleMoves(int x, int y){
+    
+ vector<vector<int>> places = {};
+
+ // define movement for pawns
+ if (board[y][x] == 'a'){
+  if (board[y+1][x] == ' '){
+      
+    vector<int> tempPlaces = {x,y,x,y+1};
+    
+    cout << "Yup" << endl;
+    
+    
+    places.push_back(tempPlaces);
+    
+  }
+ }
+
+
+    
+    
+    return places;
+}
+
+
+int main()
+{
+    board=defaultboard;
+    
+    
+    CalculatePosibleMoves(0,1);
+
+    return 0;
+}
